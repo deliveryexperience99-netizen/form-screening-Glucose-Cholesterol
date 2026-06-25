@@ -876,11 +876,22 @@ function openWhatsApp(){
     lines.push('- Kolesterol total: ' + lastResult.chol.value + ' mg/dL (' + lastResult.chol.cat + ')');
   }
   lines.push('');
-  lines.push('Hi, bisa saya tahu lebih lanjut tentang produk rekomendasi dari HDI untuk kondisi saya?');
+  lines.push('Bisa saya tahu lebih lanjut tentang produk rekomendasi dari HDI untuk kondisi saya?');
 
   const message = encodeURIComponent(lines.join('\n'));
-  const url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + message;
-  window.open(url, '_blank');
+  const waUrl = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + message;
+
+  // Ganti href tombol secara langsung lalu klik — paling andal, tidak kena popup blocker
+  const btn = document.getElementById('waBtn');
+  btn.href = waUrl;
+  btn.target = '_blank';
+  btn.onclick = null;
+  btn.click();
+  // Kembalikan onclick setelah klik
+  setTimeout(function(){
+    btn.href = '#';
+    btn.onclick = function(){ openWhatsApp(); return false; };
+  }, 500);
 }
 
 function showSyncStatus(message, isError){
