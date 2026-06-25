@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Form Baca Hasil Gula Darah & Kolesterol</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.47.0/iconfont/tabler-icons.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* HDI Color Palette 2026 — Primary */
+    --red:        #FF353F;   /* Red Heart */
+    --red-deep:   #C71E27;
+    --red-bg:     #FFE3E4;
+    --yellow:     #FBAD18;   /* Sunrise Yellow */
+    --yellow-deep:#9A6705;
+    --yellow-bg:  #FEF1D6;
+    --green:      #5D7261;   /* Buzz Green */
+    --green-deep: #3C4D40;
+    --green-bg:   #E3EAE4;
+    --ink:        #444345;   /* Midnight Beehive */
+    --beeswax:    #F0DFCF;   /* Beeswax */
+    --bg:         #FBF4EC;
+    --card:       #FFFFFF;
+    --ink-soft:   #82776E;
+    --line:       rgba(68,67,69,0.12);
+
+    --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(circle at 8% -6%, rgba(251,173,24,0.16), transparent 42%),
+      radial-gradient(circle at 96% 12%, rgba(255,53,63,0.10), transparent 38%),
+      var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.55;
+    padding:0 0 90px;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:0 18px;}
+
+  /* ===== HERO / MASTHEAD ===== */
+  .hero{
+    background:linear-gradient(135deg, var(--red) 0%, #FF5A55 52%, var(--yellow) 100%);
+    padding:46px 18px 56px;
+    margin-bottom:-30px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:'';
+    position:absolute;
+    top:-60px; right:-60px;
+    width:280px;height:280px;
+    background:rgba(255,255,255,0.14);
+    clip-path:polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+  }
+  .hero::after{
+    content:'';
+    position:absolute;
+    bottom:-90px; left:-40px;
+    width:200px;height:200px;
+    background:rgba(255,255,255,0.10);
+    clip-path:polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+  }
+  .hero-inner{max-width:760px;margin:0 auto;position:relative;z-index:1;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:7px;
+    font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
+    color:#fff;font-weight:700;
+    background:rgba(255,255,255,0.2);
+    padding:6px 13px 6px 10px;
+    border-radius:999px;
+    margin:0 0 16px;
+    backdrop-filter:blur(4px);
+  }
+  .eyebrow .hex{
+    width:14px;height:14px;
+    background:#fff;
+    clip-path:polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+    flex-shrink:0;
+  }
+  .hero h1{
+    font-family:var(--serif);
+    font-weight:700;
+    font-optical-sizing:auto;
+    font-size:clamp(30px,5.2vw,42px);
+    margin:0 0 12px;
+    line-height:1.1;
+    color:#fff;
+    text-shadow:0 1px 14px rgba(0,0,0,0.08);
+  }
+  .hero p{margin:0;color:rgba(255,255,255,0.92);font-size:15.5px;max-width:54ch;}
+
+  /* ===== CARD SURFACE ===== */
+  .surface{
+    background:var(--card);
+    border-radius:20px;
+    padding:28px 24px 8px;
+    position:relative;
+    z-index:2;
+    box-shadow:0 18px 40px -22px rgba(68,67,69,0.28);
+  }
+
+  .disclaimer{
+    background:var(--yellow-bg);
+    border:1px solid rgba(251,173,24,0.35);
+    border-radius:12px;
+    padding:14px 16px;
+    font-size:13.5px;
+    color:var(--yellow-deep);
+    margin-bottom:28px;
+    display:flex;
+    gap:10px;
+    align-items:flex-start;
+  }
+  .disclaimer i{font-size:17px;margin-top:1px;flex-shrink:0;}
+  .disclaimer strong{font-weight:700;}
+
+  .section-title{
+    font-family:var(--serif);
+    font-size:21px;
+    font-weight:700;
+    margin:0 0 4px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:var(--ink);
+  }
+  .section-title .ico{
+    width:30px;height:30px;
+    border-radius:9px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:15px;
+    flex-shrink:0;
+  }
+  .section-title .ico.red{background:var(--red-bg);color:var(--red-deep);}
+  .section-title .ico.yellow{background:var(--yellow-bg);color:var(--yellow-deep);}
+  .section-title .ico.green{background:var(--green-bg);color:var(--green-deep);}
+  .section-sub{font-size:13.5px;color:var(--ink-soft);margin:0 0 18px 40px;}
+
+  .card{
+    background:#FFFDFB;
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:22px 22px 24px;
+    margin-bottom:26px;
+  }
+
+  .field-row{display:grid;grid-template-columns:1fr;gap:14px;margin-bottom:16px;}
+  @media (min-width:560px){
+    .field-row.two{grid-template-columns:1fr 1fr;}
+  }
+  .field label{
+    display:block;
+    font-size:13px;
+    font-weight:700;
+    color:var(--ink);
+    margin-bottom:6px;
+  }
+  .field .hint{font-size:12px;color:var(--ink-soft);font-weight:400;margin-left:4px;}
+  .field input[type=number], .field input[type=text], .field select{
+    width:100%;
+    height:44px;
+    border:1.5px solid var(--line);
+    border-radius:10px;
+    padding:0 14px;
+    font-size:15px;
+    font-family:var(--sans);
+    color:var(--ink);
+    background:#fff;
+    transition:border-color .15s, box-shadow .15s;
+  }
+  .field input:focus, .field select:focus{
+    outline:none;
+    border-color:var(--red);
+    box-shadow:0 0 0 4px rgba(255,53,63,0.12);
+  }
+
+  .divider{border:none;border-top:1px dashed var(--line);margin:20px 0;}
+
+  .subhead{font-size:13.5px;font-weight:700;color:var(--ink);margin:0 0 14px;display:flex;align-items:center;gap:8px;text-transform:uppercase;letter-spacing:.04em;}
+  .subhead .dot{
+    width:8px;height:8px;
+    background:var(--red);
+    clip-path:polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+    display:inline-block;
+  }
+
+  .btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;margin-bottom:28px;}
+  button{
+    font-family:var(--sans);
+    font-size:14.5px;
+    font-weight:700;
+    border-radius:12px;
+    padding:13px 24px;
+    cursor:pointer;
+    border:none;
+    transition:transform .12s, box-shadow .12s, background .15s;
+  }
+  button:active{transform:scale(0.98);}
+  .btn-primary{
+    background:linear-gradient(135deg, var(--red), #FF5A55);
+    color:#fff;
+    box-shadow:0 10px 22px -10px rgba(255,53,63,0.55);
+  }
+  .btn-primary:hover{box-shadow:0 12px 26px -8px rgba(255,53,63,0.6);}
+  .btn-secondary{background:var(--beeswax);color:var(--green-deep);}
+  .btn-secondary:hover{background:#EAD5C0;}
+  .btn-whatsapp{
+    background:linear-gradient(135deg, #25D366, #1FAF54);
+    color:#fff;
+    box-shadow:0 10px 22px -10px rgba(37,211,102,0.55);
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+  }
+  .btn-whatsapp:hover{box-shadow:0 12px 26px -8px rgba(37,211,102,0.6);}
+  .btn-shop{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    font-family:var(--sans);
+    font-size:14.5px;
+    font-weight:700;
+    border-radius:12px;
+    padding:13px 24px;
+    cursor:pointer;
+    border:none;
+    text-decoration:none;
+    transition:transform .12s, box-shadow .12s, background .15s;
+    background:linear-gradient(135deg, var(--yellow), #FFCB5C);
+    color:var(--ink);
+    box-shadow:0 10px 22px -10px rgba(251,173,24,0.6);
+  }
+  .btn-shop:hover{box-shadow:0 12px 26px -8px rgba(251,173,24,0.65);}
+  .btn-shop:active{transform:scale(0.98);}
+
+  /* ===== SEGMENTED CONTROL ===== */
+  .seg{display:flex;flex-wrap:wrap;gap:8px;}
+  .seg-opt{
+    position:relative;
+    flex:1 1 auto;
+    min-width:140px;
+    border:1.5px solid var(--line);
+    border-radius:11px;
+    padding:11px 14px;
+    font-size:13.5px;
+    font-weight:700;
+    color:var(--ink-soft);
+    cursor:pointer;
+    text-align:center;
+    background:#fff;
+    transition:all .15s;
+  }
+  .seg-opt input{position:absolute;opacity:0;pointer-events:none;}
+  .seg-opt.active{
+    border-color:var(--red);
+    background:linear-gradient(135deg, var(--red), #FF5A55);
+    color:#fff;
+    box-shadow:0 8px 18px -10px rgba(255,53,63,0.5);
+  }
+
+  /* ===== RESULTS ===== */
+  #results{display:none;margin-top:4px;}
+  .result-card{
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:20px 22px;
+    margin-bottom:16px;
+    background:#fff;
+  }
+  .result-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:12px;flex-wrap:wrap;}
+  .result-head .label{font-size:12.5px;color:var(--ink-soft);font-weight:700;text-transform:uppercase;letter-spacing:.06em;}
+  .result-head .value{font-family:var(--serif);font-size:28px;font-weight:700;}
+  .badge{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    font-size:12px;
+    font-weight:700;
+    padding:6px 13px;
+    border-radius:999px;
+    white-space:nowrap;
+  }
+  .badge::before{
+    content:'';
+    width:7px;height:7px;
+    border-radius:50%;
+    background:currentColor;
+  }
+  .badge.ok{background:var(--green-bg);color:var(--green-deep);}
+  .badge.warn{background:var(--yellow-bg);color:var(--yellow-deep);}
+  .badge.danger{background:var(--red-bg);color:var(--red-deep);}
+
+  .scale{
+    position:relative;
+    height:9px;
+    border-radius:5px;
+    margin:14px 0 7px;
+    background:linear-gradient(to right, #5D7261 0%, #5D7261 var(--p1,33%), #FBAD18 var(--p1,33%), #FBAD18 var(--p2,66%), #FF353F var(--p2,66%), #FF353F 100%);
+  }
+  .scale .marker{
+    position:absolute;
+    top:-6px;
+    width:4px;
+    height:21px;
+    background:var(--ink);
+    border-radius:3px;
+    transform:translateX(-50%);
+    box-shadow:0 0 0 2px #fff;
+  }
+  .scale-labels{display:flex;justify-content:space-between;font-size:11px;color:var(--ink-soft);font-weight:500;}
+
+  .summary-banner{
+    border-radius:16px;
+    padding:22px 24px;
+    margin-bottom:24px;
+    position:relative;
+    overflow:hidden;
+  }
+  .summary-banner.ok{background:linear-gradient(135deg, var(--green-bg), #F1F5F1);}
+  .summary-banner.warn{background:linear-gradient(135deg, var(--yellow-bg), #FFF8E8);}
+  .summary-banner.danger{background:linear-gradient(135deg, var(--red-bg), #FFF0F0);}
+  .summary-banner h3{font-family:var(--serif);font-size:20px;font-weight:700;margin:0 0 6px;}
+  .summary-banner.ok h3{color:var(--green-deep);}
+  .summary-banner.warn h3{color:var(--yellow-deep);}
+  .summary-banner.danger h3{color:var(--red-deep);}
+  .summary-banner p{margin:0;font-size:14px;color:var(--ink);}
+
+  .tips-list{margin:0;padding:0;list-style:none;font-size:14.5px;}
+  .tips-list li{
+    margin-bottom:10px;
+    padding-left:26px;
+    position:relative;
+  }
+  .tips-list li::before{
+    content:'';
+    position:absolute;
+    left:0; top:5px;
+    width:14px;height:14px;
+    background:var(--green);
+    clip-path:polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+  }
+
+  .footer-note{
+    font-size:12px;
+    color:var(--ink-soft);
+    text-align:center;
+    margin-top:10px;
+    padding:20px 18px 0;
+    border-top:1px solid var(--line);
+  }
+
+  .product-item{
+    display:flex;
+    gap:13px;
+    padding:15px 0;
+    border-top:1px solid var(--line);
+  }
+  .product-item:first-child{border-top:none;padding-top:0;}
+  .product-icon{
+    width:42px;height:42px;
+    background:linear-gradient(135deg, var(--yellow), var(--red));
+    clip-path:polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+    color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-size:18px;flex-shrink:0;
+  }
+  .product-name{font-size:14.5px;font-weight:700;margin:0 0 3px;color:var(--ink);}
+  .product-desc{font-size:13.5px;color:var(--ink-soft);margin:0;}
+
+  #downloadBtn{display:inline-flex;align-items:center;}
+
+  .capture-header{
+    display:flex;align-items:center;gap:12px;
+  }
+  .capture-header .hex-mark{
+    width:34px;height:34px;
+    background:linear-gradient(135deg, var(--red), var(--yellow));
+    clip-path:polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+    flex-shrink:0;
+  }
+</style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="hero-inner">
+      <span class="eyebrow"><span class="hex"></span>Asisten screening kesehatan mandiri</span>
+      <h1>Form baca hasil gula darah &amp; kolesterol</h1>
+      <p>Masukkan angka dari hasil tes mandiri atau mini check-up Anda. Form ini akan mengelompokkan hasil ke kategori standar dan memberi langkah edukasi awal.</p>
+    </div>
+  </div>
+
+<div class="wrap">
+  <div class="surface">
+
+  <div class="disclaimer">
+    <i class="ti ti-info-circle" aria-hidden="true"></i>
+    <div><strong>Catatan penting:</strong> Hasil dari form ini bersifat edukasi awal dan bukan diagnosis medis. Untuk kepastian kondisi kesehatan, konsultasikan dengan dokter atau lakukan pemeriksaan laboratorium resmi.</div>
+  </div>
+
+  <!-- SECTION 0: DATA DIRI -->
+  <div class="section-title"><span class="ico red"><i class="ti ti-user" aria-hidden="true"></i></span> Data diri</div>
+  <p class="section-sub">Usia membantu menyesuaikan konteks pembacaan hasil Anda, nomor WhatsApp untuk pendampingan lebih lanjut.</p>
+
+  <div class="card">
+    <div class="field-row two">
+      <div class="field">
+        <label for="namaUser">Nama <span class="hint">untuk hasil screening Anda</span></label>
+        <input type="text" id="namaUser" placeholder="cth. Budi Santoso">
+      </div>
+      <div class="field">
+        <label for="usiaUser">Usia <span class="hint">tahun</span></label>
+        <input type="number" id="usiaUser" placeholder="cth. 35" min="1" max="120">
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label for="waUser">Nomor WhatsApp <span class="hint">untuk follow-up perkembangan kesehatan Anda</span></label>
+        <input type="tel" id="waUser" placeholder="cth. 0812-3456-7890" inputmode="numeric">
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: GULA DARAH -->
+  <div class="section-title"><span class="ico yellow"><i class="ti ti-droplet-half-2" aria-hidden="true"></i></span> Gula darah</div>
+  <p class="section-sub">Pilih jenis tes yang Anda lakukan, lalu isi satu angka hasilnya.</p>
+
+  <div class="card">
+    <div class="subhead"><span class="dot"></span> Jenis pemeriksaan</div>
+    <div class="seg" id="gdsType">
+      <label class="seg-opt active">
+        <input type="radio" name="gdsType" value="gdp" checked onchange="onGdsTypeChange()">
+        <span>Gula darah puasa</span>
+      </label>
+      <label class="seg-opt">
+        <input type="radio" name="gdsType" value="gds" onchange="onGdsTypeChange()">
+        <span>Gula darah sewaktu</span>
+      </label>
+      <label class="seg-opt">
+        <input type="radio" name="gdsType" value="pp" onchange="onGdsTypeChange()">
+        <span>2 jam setelah makan</span>
+      </label>
+    </div>
+
+    <div class="field-row" style="margin-top:16px;">
+      <div class="field">
+        <label for="gulaDarahValue" id="gulaDarahLabel">Hasil gula darah puasa (GDP) <span class="hint">mg/dL, puasa min. 8 jam</span></label>
+        <input type="number" id="gulaDarahValue" placeholder="cth. 95" min="0" max="600">
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: KOLESTEROL -->
+  <div class="section-title"><span class="ico green"><i class="ti ti-heartbeat" aria-hidden="true"></i></span> Kolesterol</div>
+  <p class="section-sub">Dari hasil rapid test strip (kolesterol total, satuan mg/dL).</p>
+
+  <div class="card">
+    <div class="field-row">
+      <div class="field">
+        <label for="chol-total">Kolesterol total <span class="hint">mg/dL</span></label>
+        <input type="number" id="chol-total" placeholder="cth. 210" min="0" max="800">
+      </div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn-primary" onclick="hitungSemua()"><i class="ti ti-sparkles" style="margin-right:6px;vertical-align:-2px;" aria-hidden="true"></i>Lihat hasil screening</button>
+    <button class="btn-secondary" onclick="resetForm()">Kosongkan form</button>
+  </div>
+  <p style="font-size:11.5px;color:var(--ink-soft);margin:-18px 0 28px;">Dengan menekan "Lihat hasil screening", data nama, usia, dan hasil tes Anda akan tercatat untuk keperluan pendampingan dari tim HDI.</p>
+
+  </div><!-- /surface -->
+
+  <!-- RESULTS -->
+  <div id="results">
+    <div class="surface" style="margin-top:18px;">
+    <div class="section-title"><span class="ico red"><i class="ti ti-report-medical" aria-hidden="true"></i></span> Hasil screening Anda</div>
+    <p class="section-sub">Dihitung otomatis dari angka yang Anda masukkan.</p>
+
+    <div id="captureArea" style="background:var(--bg);padding:22px;border-radius:16px;">
+      <div class="capture-header" style="margin-bottom:18px;">
+        <div class="hex-mark"></div>
+        <div>
+          <p style="margin:0 0 2px;font-size:16px;font-weight:700;color:var(--ink);" id="captureName"></p>
+          <p style="margin:0;font-size:12px;color:var(--ink-soft);" id="captureDate"></p>
+        </div>
+      </div>
+
+      <div class="disclaimer" style="margin-bottom:20px;">
+        <i class="ti ti-info-circle" aria-hidden="true"></i>
+        <div><strong>Catatan:</strong> Ini adalah screening edukasi awal, bukan diagnosis medis. Konsultasikan ke dokter atau lakukan tes laboratorium untuk kepastian.</div>
+      </div>
+
+      <div id="summaryBanner"></div>
+      <div id="resultCards"></div>
+
+      <div class="card" id="tipsCard" style="display:none;">
+        <div class="subhead"><span class="dot"></span> Langkah praktis yang bisa dimulai</div>
+        <ul class="tips-list" id="tipsList"></ul>
+      </div>
+
+      <div class="card" id="productCard" style="display:none;margin-bottom:0;">
+        <div class="subhead"><span class="dot"></span> Referensi produk pendukung HDI</div>
+        <p style="font-size:12.5px;color:var(--ink-soft);margin:-6px 0 14px;">Suplemen sebagai pendamping gaya hidup sehat, bukan pengganti obat dokter.</p>
+        <div id="productList"></div>
+      </div>
+    </div>
+
+    <div class="btn-row" style="margin-top:18px;margin-bottom:8px;">
+      <button class="btn-primary" id="downloadBtn" onclick="downloadAsJpg()">
+        <i class="ti ti-download" style="font-size:16px;vertical-align:-2px;margin-right:6px;" aria-hidden="true"></i>Unduh hasil (.jpg)
+      </button>
+      <a class="btn-whatsapp" id="waBtn" href="tel:081398004040">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-4px;margin-right:7px;flex-shrink:0;" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.74.46 3.43 1.32 4.93L2.05 22l5.3-1.39c1.45.79 3.08 1.2 4.73 1.2h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.13h-.01c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.14.82.84-3.06-.2-.32a8.18 8.18 0 0 1-1.26-4.33c0-4.52 3.68-8.2 8.2-8.2 2.19 0 4.25.85 5.8 2.41a8.14 8.14 0 0 1 2.4 5.8c0 4.52-3.68 8.2-8.13 8.2zm4.5-6.14c-.25-.12-1.47-.72-1.69-.81-.23-.08-.4-.12-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.04-.38-1.99-1.22-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.16-.25.25-.42.08-.17.04-.31-.02-.43-.06-.12-.56-1.36-.77-1.85-.2-.49-.41-.42-.56-.43-.14-.01-.31-.01-.48-.01-.16 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.68 4.25 3.75.59.26 1.06.41 1.42.53.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.1-.23-.16-.48-.28z"/></svg>Hubungi Konsultan HDI
+      </a>
+      <a class="btn-shop" id="shopBtn" href="https://www.hdi.com/" target="_blank" rel="noopener noreferrer">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-4px;margin-right:7px;" aria-hidden="true"><circle cx="9" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.5 2.5h2l2.6 12.4a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 2-1.6L21.5 7H6"></path></svg>Belanja di HDI.com
+      </a>
+    </div>
+    </div><!-- /surface -->
+  </div>
+
+  <div class="footer-note">
+    Rentang acuan: gula darah berdasar standar umum laboratorium klinis; kolesterol total berdasar panduan mini medical check-up dengan metode strip. Bukan pengganti pemeriksaan dan konsultasi medis profesional.
+  </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+const WHATSAPP_NUMBER = '6282131597840';
+
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz_-oxEbjgC8zBfn3G5krPH1EDUadFY-CbfthBvsegaobGF5P6_l8gKoyPlT7VIpH1J/exec';
+
+let lastResult = { nama: '', usia: null, wa: '', gula: null, chol: null };
+
+const HDI_PRODUCTS = {
+  gula: [
+    {
+      icon: 'ti-droplet',
+      color: 'red',
+      name: 'HDI Propoelix™',
+      desc: 'Ekstrak propolis tinggi antioksidan yang membantu meredakan inflamasi kronis akibat kadar gula tidak stabil dan menjaga sistem imun.'
+    },
+    {
+      icon: 'ti-flask',
+      color: 'black',
+      name: 'HDI Royale Jelly Liquid',
+      desc: 'Membantu mendukung kerja sistem endokrin dan regenerasi sel, termasuk sel pankreas, sebagai bagian dari perawatan suportif harian.'
+    },
+    {
+      icon: 'ti-leaf',
+      color: 'yellow',
+      name: 'HDI Naturals™ Clover Honey',
+      desc: 'Madu murni dengan indeks glikemik lebih bersahabat sebagai pengganti gula pasir, cocok jadi bagian dari pola hidup sehat sehari-hari sesuai kebutuhan kalori Anda.'
+    },
+    {
+      icon: 'ti-scale',
+      color: 'pink',
+      name: 'HDI Trimee X',
+      desc: 'Membantu menjaga gula darah dan kolesterol tetap seimbang, sekaligus menghambat penyerapan lemak berlebih dan mempercepat metabolisme tubuh.'
+    }
+  ],
+  kolesterol: [
+    {
+      icon: 'ti-droplet',
+      color: 'red',
+      name: 'HDI Propoelix™',
+      desc: 'Kaya antioksidan polifenol yang membantu mencegah oksidasi kolesterol LDL, salah satu pemicu utama plak pada dinding arteri.'
+    },
+    {
+      icon: 'ti-flask',
+      color: 'black',
+      name: 'HDI Royale Jelly Liquid',
+      desc: 'Mengandung protein MRJPs dan asam lemak 10-HDA yang membantu meregulasi metabolisme lemak di hati untuk mendukung kestabilan profil lipid.'
+    },
+    {
+      icon: 'ti-leaf',
+      color: 'yellow',
+      name: 'HDI Naturals™ Clover Honey',
+      desc: 'Pengganti gula rafinasi yang sehat, membantu menekan pembentukan trigliserida baru dari konsumsi gula berlebih.'
+    },
+    {
+      icon: 'ti-scale',
+      color: 'pink',
+      name: 'HDI Trimee X',
+      desc: 'Membantu menghambat penyerapan lemak dan mempercepat metabolisme, sekaligus menjaga gula darah dan kolesterol tetap seimbang.'
+    }
+  ]
+};
+
+const PRODUCT_COLOR_MAP = {
+  red:    { bg: 'linear-gradient(135deg, #FF353F, #FF6A66)' },
+  black:  { bg: 'linear-gradient(135deg, #444345, #6B696C)' },
+  yellow: { bg: 'linear-gradient(135deg, #FBAD18, #FFCB5C)' },
+  pink:   { bg: 'linear-gradient(135deg, #E89B8A, #F4BDB0)' }
+};
+
+function productListHtml(items){
+  return items.map(p => {
+    const c = PRODUCT_COLOR_MAP[p.color] || PRODUCT_COLOR_MAP.red;
+    return `
+    <div class="product-item">
+      <div class="product-icon" style="background:${c.bg};"><i class="ti ${p.icon}" aria-hidden="true"></i></div>
+      <div>
+        <p class="product-name">${p.name}</p>
+        <p class="product-desc">${p.desc}</p>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+const GDS_TYPE_INFO = {
+  gdp: {
+    label: 'Hasil gula darah puasa (GDP)',
+    hint: 'mg/dL, puasa min. 8 jam',
+    placeholder: 'cth. 95',
+    cardTitle: 'Gula darah puasa (GDP)',
+    low: '<100 Normal', mid: '100-125 Prediabetes', high: '≥126 Diabetes',
+    classify: classifyGDP
+  },
+  gds: {
+    label: 'Hasil gula darah sewaktu (GDS)',
+    hint: 'mg/dL, kapan saja',
+    placeholder: 'cth. 150',
+    cardTitle: 'Gula darah sewaktu (GDS)',
+    low: '<140 Normal', mid: '140-199 Prediabetes', high: '≥200 Diabetes',
+    classify: classifyGDS
+  },
+  pp: {
+    label: 'Hasil gula darah 2 jam setelah makan',
+    hint: 'mg/dL',
+    placeholder: 'cth. 160',
+    cardTitle: 'Gula darah 2 jam setelah makan',
+    low: '<140 Normal', mid: '140-199 Waspada', high: '≥200 Tinggi',
+    classify: classifyGDS
+  }
+};
+
+function val(id){
+  const v = document.getElementById(id).value;
+  return v === '' ? null : parseFloat(v);
+}
+
+function classifyGDP(x){
+  if(x < 100) return {cat:'Normal', level:'ok', pos: (x/150)*33};
+  if(x <= 125) return {cat:'Prediabetes', level:'warn', pos: 33 + ((x-100)/26)*33};
+  return {cat:'Diabetes', level:'danger', pos: Math.min(66 + ((x-126)/74)*34, 98)};
+}
+function classifyGDS(x){
+  if(x < 140) return {cat:'Normal', level:'ok', pos:(x/210)*33};
+  if(x <= 199) return {cat:'Prediabetes', level:'warn', pos: 33 + ((x-140)/60)*33};
+  return {cat:'Diabetes', level:'danger', pos: Math.min(66 + ((x-200)/100)*34, 98)};
+}
+function classifyChol(x){
+  if(x < 200) return {cat:'Optimal', level:'ok', pos:(x/300)*33};
+  if(x <= 239) return {cat:'Ambang batas atas', level:'warn', pos: 33 + ((x-200)/40)*33};
+  return {cat:'Tinggi', level:'danger', pos: Math.min(66 + ((x-240)/80)*34, 98)};
+}
+
+function badgeHtml(level, text){
+  return '<span class="badge ' + level + '">' + text + '</span>';
+}
+
+function resultCard(title, unit, value, result, lowLabel, midLabel, highLabel){
+  return `
+  <div class="result-card">
+    <div class="result-head">
+      <div>
+        <div class="label">${title}</div>
+        <div class="value">${value} <span style="font-size:14px;color:var(--ink-soft);font-weight:400;">${unit}</span></div>
+      </div>
+      ${badgeHtml(result.level, result.cat)}
+    </div>
+    <div class="scale" style="--p1:33%;--p2:66%;">
+      <div class="marker" style="left:${result.pos}%;"></div>
+    </div>
+    <div class="scale-labels"><span>${lowLabel}</span><span>${midLabel}</span><span>${highLabel}</span></div>
+  </div>`;
+}
+
+function onGdsTypeChange(){
+  const type = document.querySelector('input[name="gdsType"]:checked').value;
+  const info = GDS_TYPE_INFO[type];
+
+  document.querySelectorAll('.seg-opt').forEach(el => el.classList.remove('active'));
+  document.querySelector('input[name="gdsType"][value="'+type+'"]').closest('.seg-opt').classList.add('active');
+
+  document.getElementById('gulaDarahLabel').innerHTML = info.label + ' <span class="hint">' + info.hint + '</span>';
+  document.getElementById('gulaDarahValue').placeholder = info.placeholder;
+}
+
+function hitungSemua(){
+  const nama = document.getElementById('namaUser').value.trim();
+  const usia = val('usiaUser');
+  const waRaw = document.getElementById('waUser').value.trim();
+  const gdsType = document.querySelector('input[name="gdsType"]:checked').value;
+  const gulaDarah = val('gulaDarahValue');
+  const cholTotal = val('chol-total');
+
+  if(nama === ''){
+    alert('Nama wajib diisi terlebih dahulu.');
+    document.getElementById('namaUser').focus();
+    return;
+  }
+  if(usia === null){
+    alert('Usia wajib diisi terlebih dahulu.');
+    document.getElementById('usiaUser').focus();
+    return;
+  }
+  if(waRaw === ''){
+    alert('Nomor WhatsApp wajib diisi terlebih dahulu.');
+    document.getElementById('waUser').focus();
+    return;
+  }
+  const waDigits = waRaw.replace(/[^0-9]/g, '');
+  if(waDigits.length < 9 || waDigits.length > 15){
+    alert('Nomor WhatsApp belum valid. Mohon periksa kembali (contoh: 0812-3456-7890).');
+    document.getElementById('waUser').focus();
+    return;
+  }
+  // Normalisasi ke format internasional 62xxxxxxxxxx
+  let waFormatted = waDigits;
+  if(waFormatted.startsWith('0')){
+    waFormatted = '62' + waFormatted.slice(1);
+  } else if(!waFormatted.startsWith('62')){
+    waFormatted = '62' + waFormatted;
+  }
+  if(gulaDarah===null && cholTotal===null){
+    alert('Isi setidaknya satu angka hasil tes terlebih dahulu.');
+    return;
+  }
+
+  let cards = '';
+  let worstLevel = 'ok'; // ok < warn < danger
+  const levelRank = {ok:0, warn:1, danger:2};
+  function track(lv){ if(levelRank[lv] > levelRank[worstLevel]) worstLevel = lv; }
+
+  if(gulaDarah!==null){
+    const info = GDS_TYPE_INFO[gdsType];
+    const r = info.classify(gulaDarah); track(r.level);
+    cards += resultCard(info.cardTitle, 'mg/dL', gulaDarah, r, info.low, info.mid, info.high);
+    lastResult.gula = { title: info.cardTitle, value: gulaDarah, cat: r.cat };
+  } else {
+    lastResult.gula = null;
+  }
+  if(cholTotal!==null){
+    const r = classifyChol(cholTotal); track(r.level);
+    cards += resultCard('Kolesterol total', 'mg/dL', cholTotal, r, '<200 Optimal', '200-239 Batas atas', '≥240 Tinggi');
+    lastResult.chol = { value: cholTotal, cat: r.cat };
+  } else {
+    lastResult.chol = null;
+  }
+
+  document.getElementById('resultCards').innerHTML = cards;
+
+  const banner = document.getElementById('summaryBanner');
+  const tipsCard = document.getElementById('tipsCard');
+  const tipsList = document.getElementById('tipsList');
+
+  let bannerHtml = '';
+  let tips = [];
+
+  if(worstLevel === 'ok'){
+    bannerHtml = `<div class="summary-banner ok"><h3>Hasil Anda berada dalam rentang normal</h3><p>Pertahankan kebiasaan baik Anda sekarang. Ini saat yang tepat untuk fokus pada pencegahan jangka panjang.</p></div>`;
+    tips = [
+      'Pertahankan pola makan seimbang, cukup serat, dan rutin berolahraga.',
+      'Cukupi kebutuhan air putih dan jaga berat badan ideal.',
+      'Lakukan general check-up berkala meski hasil saat ini normal.',
+      'Rutin konsumsi suplemen HDI (lihat referensi di bawah) sebagai langkah pencegahan harian.'
+    ];
+  } else if(worstLevel === 'warn'){
+    bannerHtml = `<div class="summary-banner warn"><h3>Ada angka yang masuk kategori waspada</h3><p>Ini alarm dini, bukan vonis. Perbaikan gaya hidup yang konsisten umumnya bisa mengembalikan angka ke rentang normal.</p></div>`;
+    tips = [
+      'Kurangi karbohidrat sederhana dan minuman manis; perbanyak sayur dan sumber serat.',
+      'Pilih lemak sehat: ganti minyak goreng biasa dengan minyak zaitun/kanola, batasi gorengan dan jeroan.',
+      'Tingkatkan aktivitas fisik, misalnya jalan kaki 20-30 menit setiap hari.',
+      'Pantau dan catat hasil secara berkala untuk melihat tren perubahan.',
+      'Rutin konsumsi suplemen HDI (lihat referensi di bawah) sebagai pendamping perbaikan gaya hidup Anda.'
+    ];
+  } else {
+    bannerHtml = `<div class="summary-banner danger"><h3>Ada angka yang masuk kategori tinggi</h3><p>Satu kali pemeriksaan saja belum cukup untuk menetapkan diagnosis. Sebaiknya lakukan konfirmasi ulang lewat laboratorium dan konsultasi ke dokter.</p></div>`;
+    tips = [
+      'Lakukan konfirmasi ulang di laboratorium klinis (darah vena), idealnya puasa 8-12 jam sebelumnya.',
+      'Konsultasikan hasil ini dengan dokter untuk evaluasi dan rencana penanganan lebih lanjut.',
+      'Mulai catat asupan makanan harian dan kurangi makanan ultra-proses sambil menunggu jadwal konsultasi.',
+      'Tingkatkan aktivitas fisik secara bertahap dan jaga kualitas tidur.',
+      'Rutin konsumsi suplemen HDI (lihat referensi di bawah) sebagai supportive care, bukan pengganti penanganan dokter.'
+    ];
+  }
+
+  tipsList.innerHTML = tips.map(t => '<li>'+t+'</li>').join('');
+  tipsCard.style.display = 'block';
+
+  let productItems = [];
+  if(gulaDarah!==null) productItems = productItems.concat(HDI_PRODUCTS.gula);
+  if(cholTotal!==null) productItems = productItems.concat(HDI_PRODUCTS.kolesterol);
+  const seen = new Set();
+  productItems = productItems.filter(p => {
+    if(seen.has(p.name)) return false;
+    seen.add(p.name);
+    return true;
+  });
+  document.getElementById('productList').innerHTML = productListHtml(productItems);
+  document.getElementById('productCard').style.display = productItems.length ? 'block' : 'none';
+
+  document.getElementById('captureName').textContent = nama + ' · ' + usia + ' tahun';
+  lastResult.nama = nama;
+  lastResult.usia = usia;
+  lastResult.wa = waFormatted;
+
+  if(usia >= 40 && worstLevel === 'ok'){
+    bannerHtml = bannerHtml.replace('</p></div>', '</p><p style="margin-top:8px;font-size:13px;">Di usia 40 tahun ke atas, risiko gula darah dan kolesterol naik secara alami — pemeriksaan rutin setiap 6-12 bulan tetap dianjurkan meski hasil saat ini normal.</p></div>');
+  }
+
+  const now = new Date();
+  document.getElementById('captureDate').textContent = now.toLocaleDateString('id-ID', {day:'numeric', month:'long', year:'numeric'}) + ' · ' + now.toLocaleTimeString('id-ID', {hour:'2-digit', minute:'2-digit'});
+
+  banner.innerHTML = bannerHtml;
+
+  document.getElementById('results').style.display = 'block';
+  document.getElementById('results').scrollIntoView({behavior:'smooth', block:'start'});
+
+  sendToSpreadsheet(lastResult);
+}
+
+function downloadAsJpg(){
+  const btn = document.getElementById('downloadBtn');
+  const original = btn.innerHTML;
+  btn.innerHTML = 'Menyiapkan gambar...';
+  btn.disabled = true;
+
+  const target = document.getElementById('captureArea');
+  html2canvas(target, {
+    backgroundColor: '#F3F1EA',
+    scale: 2,
+    useCORS: true
+  }).then(canvas => {
+    const link = document.createElement('a');
+    const stamp = new Date().toISOString().slice(0,10);
+    const namaSlug = (document.getElementById('namaUser').value.trim() || 'hasil')
+      .toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    link.download = 'screening-' + namaSlug + '-' + stamp + '.jpg';
+    link.href = canvas.toDataURL('image/jpeg', 0.95);
+    link.click();
+    btn.innerHTML = original;
+    btn.disabled = false;
+  }).catch(() => {
+    alert('Gagal membuat gambar. Coba lagi atau ambil tangkapan layar manual.');
+    btn.innerHTML = original;
+    btn.disabled = false;
+  });
+}
+
+function openWhatsApp(){
+  if(!lastResult.nama){
+    alert('Lengkapi dan hitung hasil screening terlebih dahulu.');
+    return;
+  }
+
+  let lines = [];
+  lines.push('Halo HDI, saya ' + lastResult.nama + ' (' + lastResult.usia + ' tahun).');
+  lines.push('Saya baru saja melakukan screening mandiri dengan hasil:');
+  if(lastResult.gula){
+    lines.push('- ' + lastResult.gula.title + ': ' + lastResult.gula.value + ' mg/dL (' + lastResult.gula.cat + ')');
+  }
+  if(lastResult.chol){
+    lines.push('- Kolesterol total: ' + lastResult.chol.value + ' mg/dL (' + lastResult.chol.cat + ')');
+  }
+  lines.push('');
+  lines.push('Hi, bisa saya tahu lebih lanjut tentang produk rekomendasi dari HDI untuk kondisi saya?');
+
+  const message = encodeURIComponent(lines.join('\n'));
+  const url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + message;
+  window.open(url, '_blank');
+}
+
+function showSyncStatus(message, isError){
+  let el = document.getElementById('syncStatus');
+  if(!el){
+    el = document.createElement('div');
+    el.id = 'syncStatus';
+    el.style.cssText = 'position:fixed;bottom:18px;right:18px;z-index:9999;padding:10px 16px;border-radius:10px;font-family:Inter,sans-serif;font-size:13px;font-weight:600;box-shadow:0 8px 20px -6px rgba(0,0,0,0.3);transition:opacity .3s;max-width:280px;';
+    document.body.appendChild(el);
+  }
+  el.style.background = isError ? '#FFE3E4' : '#E3EAE4';
+  el.style.color = isError ? '#C71E27' : '#3C4D40';
+  el.textContent = message;
+  el.style.opacity = '1';
+  clearTimeout(el._hideTimer);
+  el._hideTimer = setTimeout(() => { el.style.opacity = '0'; }, 5000);
+}
+
+function sendToSpreadsheet(data){
+  if(!GOOGLE_SCRIPT_URL){
+    showSyncStatus('⚠️ GOOGLE_SCRIPT_URL belum diisi di kode form.', true);
+    return;
+  }
+
+  showSyncStatus('Menyimpan data ke spreadsheet...', false);
+
+  // Gunakan hidden iframe + form — bekerja dari file:// maupun http://
+  // karena tidak terkena CORS preflight dan tidak butuh JS cross-origin read
+  const iframeId = 'gasSubmitFrame';
+  let iframe = document.getElementById(iframeId);
+  if(!iframe){
+    iframe = document.createElement('iframe');
+    iframe.id = iframeId;
+    iframe.name = iframeId;
+    iframe.style.cssText = 'display:none;width:0;height:0;border:none;';
+    document.body.appendChild(iframe);
+  }
+
+  const form = document.createElement('form');
+  form.method = 'GET';
+  form.action = GOOGLE_SCRIPT_URL;
+  form.target = iframeId;
+  form.style.display = 'none';
+
+  const fields = {
+    timestamp:    new Date().toISOString(),
+    nama:         data.nama                         || '',
+    usia:         String(data.usia                  || ''),
+    whatsapp:     data.wa                           || '',
+    gulaJenis:    data.gula ? data.gula.title        : '',
+    gulaNilai:    data.gula ? String(data.gula.value) : '',
+    gulaKategori: data.gula ? data.gula.cat          : '',
+    cholNilai:    data.chol ? String(data.chol.value) : '',
+    cholKategori: data.chol ? data.chol.cat          : ''
+  };
+
+  Object.entries(fields).forEach(([k, v]) => {
+    const input = document.createElement('input');
+    input.type  = 'hidden';
+    input.name  = k;
+    input.value = v;
+    form.appendChild(input);
+  });
+
+  document.body.appendChild(form);
+
+  iframe.onload = function(){
+    showSyncStatus('✓ Data tersimpan ke spreadsheet.', false);
+    iframe.onload = null;
+  };
+
+  form.submit();
+  document.body.removeChild(form);
+}
+
+function resetForm(){
+  document.getElementById('namaUser').value = '';
+  document.getElementById('usiaUser').value = '';
+  document.getElementById('waUser').value = '';
+  document.getElementById('gulaDarahValue').value = '';
+  document.getElementById('chol-total').value = '';
+  document.querySelector('input[name="gdsType"][value="gdp"]').checked = true;
+  onGdsTypeChange();
+  document.getElementById('productCard').style.display = 'none';
+  document.getElementById('results').style.display = 'none';
+  lastResult = { nama: '', usia: null, wa: '', gula: null, chol: null };
+}
+</script>
+</body>
+</html>
